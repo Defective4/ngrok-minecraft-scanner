@@ -13,7 +13,7 @@ It allows you to scan for servers on all versions, as well as servers with `enab
 
 # Command arguments
 ```
-Usage: java -jar ngrok-minecraft-scanner-1.0.jar [options...]
+Usage: java -jar ngrok-minecraft-scanner.jar [options...]
 
 A scanner utility for Minecraft servers shared over ngrok.
 
@@ -29,15 +29,17 @@ A scanner utility for Minecraft servers shared over ngrok.
  -y               Assume "yes" to all questions.
  -f=<file>        Target while, where discovered servers will be saved.
                     This option won't suppress standard output
+ -p=<pvn>         Protocol version number used for standard ping.
+                    Usually you can just leave it at default (754).
  -r=<region>      ngrok region.
                     EU - Europe,
                     US - United States (default)
  -e               Don't print servers with no online players.
  -t=<threads>     Number of threads to use for scanning.
                     Default: 2
- -v               Be more verbose
  -o=<timeout ms>  How many milliseconds should a connection take before timing out.
                     Default: 1000
+ -v               Be more verbose
 ```
 
 # Usage
@@ -68,3 +70,6 @@ java -jar ngrok-minecraft-scanner.jar -t=4 -o=2500 -r=eu -J
 ```
 Remember that enabling this option will slow down the scanning process!  
 Also it's not possible to get any info (player count, description, version) about servers discovered using this method.
+
+## Download
+You can download latest version in [Releases section](https://github.com/Defective4/ngrok-minecraft-scanner/releases/latest)
