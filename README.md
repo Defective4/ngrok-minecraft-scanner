@@ -27,7 +27,7 @@ A scanner utility for Minecraft servers shared over ngrok.
  -l               Fall back to legacy server list ping, in case the first attempt fails.
                     Makes the scan take more time.
  -y               Assume "yes" to all questions.
- -f=<file>        Target while, where discovered servers will be saved.
+ -f=<file>        Target file, where discovered servers will be saved.
                     This option won't suppress standard output
  -p=<pvn>         Protocol version number used for standard ping.
                     Usually you can just leave it at default (754).
@@ -62,7 +62,7 @@ Timeout of 2500ms is a pretty safe value
 ## Scan for unlisted servers
 Some servers might have `enable-status` set to false in their properties. In that case they won't get discovered using normal pinging.  
 You can use the `-J` option to try to discover unlisted servers.  
-The scanner will then make an attempt to "join" a server (if the server didn't respond to standard ping) using invalid protocol ID. If the server responds with a disconnect packet, it means it's online.  
+The scanner will then make an attempt to "join" the server (if it didn't respond to standard ping) using invalid protocol ID. If the server responds with a disconnect packet, it means it's online.  
 
 Example:
 ```bash
