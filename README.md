@@ -8,7 +8,7 @@ A scanner utility for Minecraft servers shared over ngrok.
 > Remember to always enable whitelist and/or online mode on your servers when sharing them on the Internet!
 
 # About
-ngrok Minecraft scanner is a simple server scanning tool that all of ngrok's IPs and ports in search for Minecraft servers.  
+ngrok Minecraft scanner is a simple server scanning tool that scans all of ngrok's IPs and ports in search for Minecraft servers.  
 It allows you to scan for servers on all versions, as well as servers with `enable-status` set to false, therefore not visible for Minecraft's regular status check.
 
 # Command arguments
