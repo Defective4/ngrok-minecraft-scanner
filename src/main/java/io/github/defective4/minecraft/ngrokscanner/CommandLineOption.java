@@ -7,7 +7,6 @@ public enum CommandLineOption {
     FORCE_JOIN(
             "J",
             "Try detecting servers with disabled listings.\nMakes the scan take more time.\nMay result in false positives."),
-
     FORCE_LEGACY_PING("L", "Force ONLY legacy server list ping."),
     HELP("h", "Display help"),
     JSON("j", "Output data in JSON format."),
@@ -15,8 +14,8 @@ public enum CommandLineOption {
             "l",
             "Fall back to legacy server list ping, in case the first attempt fails.\n"
                     + "Makes the scan take more time."),
-
     NON_INTERACTIVE("y", "Assume \"yes\" to all questions."),
+
     OUTPUT(
             "f",
             "file",
@@ -25,6 +24,18 @@ public enum CommandLineOption {
                 File f = new File(in);
                 if (f.isDirectory()) return "File " + in + " is a directory!";
                 return null;
+            }),
+    PROTOCOL(
+            "p",
+            "pvn",
+            "Protocol version number used for standard ping.\n" + "Usually you can just leave it at default (754).",
+            in -> {
+                try {
+                    Integer.parseInt(in);
+                    return null;
+                } catch (Exception e) {
+                    return "Invalid protocol version number: " + in;
+                }
             }),
     REGION(
             "r",

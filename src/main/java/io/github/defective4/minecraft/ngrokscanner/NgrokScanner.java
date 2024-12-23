@@ -12,8 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.github.defective4.minecraft.ngrokscanner.NgrokScanner.HostPortPair;
-
 public class NgrokScanner {
     public static interface AddressResolverCallback {
         void resolved(String host, boolean success, String address);
@@ -80,7 +78,7 @@ public class NgrokScanner {
     }
 
     public static void scan(List<List<HostPortPair>> list, ScannerCallback callback, int legacy, boolean join,
-            int timeout) {
+            int timeout, int pvn) {
         for (List<HostPortPair> pairs : list) {
             new Thread(() -> {
                 for (HostPortPair pair : pairs) {
@@ -93,15 +91,14 @@ public class NgrokScanner {
                             PingResponse data;
                             try {
                                 try {
-                                    data = MinecraftPinger.ping(addr, 754, timeout);
+                                    data = MinecraftPinger.ping(addr, pvn, timeout);
                                 } catch (Exception e) {
                                     if (legacy != 1) throw e;
                                     data = MinecraftPinger.legacyPing(addr, timeout);
                                 }
                             } catch (Exception e) {
-                                if (!join) throw e;
-                                if (MinecraftPinger.tryJoin(addr, timeout)) data = new PingResponse();
-                                else throw e;
+                                if (!join || !MinecraftPinger.tryJoin(addr, timeout)) throw e;
+                                data = new PingResponse();
                             }
                             callback.discovered(data, pair.getHost(), pair.getPort());
                         }

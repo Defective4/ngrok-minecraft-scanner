@@ -145,10 +145,12 @@ public class ScannerMain {
         String region = "us";
         int threads = 2;
         long timeout = 1000;
+        int pvn = 754;
 
         if (options.containsKey(REGION)) region = options.get(REGION);
         if (options.containsKey(THREADS)) threads = Integer.parseInt(options.get(THREADS));
         if (options.containsKey(TIMEOUT)) timeout = Long.parseLong(options.get(TIMEOUT));
+        if (options.containsKey(PROTOCOL)) pvn = Integer.parseInt(options.get(PROTOCOL));
 
         System.err.println();
         System.err.println(" ngrok region: " + region);
@@ -162,6 +164,7 @@ public class ScannerMain {
         System.err.println(" Discover unlisted: " + options.containsKey(FORCE_JOIN));
         System.err.println(" Skip ngrok IP resolve: " + options.containsKey(DONT_RESOLVE));
         if (options.containsKey(OUTPUT)) System.err.println(" Output file: " + options.get(OUTPUT));
+        if (options.containsKey(PROTOCOL)) System.err.println(" Protocol version number: " + options.get(PROTOCOL));
 
         System.err.println();
         if (!options.containsKey(NON_INTERACTIVE) && !askYN("Are these settings correct?")) {
@@ -279,7 +282,7 @@ public class ScannerMain {
                 progress(size, host, port);
             }
         }, options.containsKey(FORCE_LEGACY_PING) ? 2 : options.containsKey(LEGACY_PING) ? 1 : 0,
-                options.containsKey(FORCE_JOIN), (int) timeout);
+                options.containsKey(FORCE_JOIN), (int) timeout, pvn);
 
         System.err.println("Scan started!");
     }
